@@ -170,6 +170,11 @@ BeginnerEase >= 6
 
 Все зависимости передаются через конструкторы и собираются через DI-контейнер.
 
+### Итог
+Наиболее явно в проекте применены ISP и DIP. ISP виден в разделении интерфейсов `ITransport`, `IInvent`, `IEnergyConsumer`, `IBeginnerFriendly`, а DIP — в зависимостях `TransportProcessor` от `IServiceCenter` и `ServiceCenter` от `IInspectionRule`.
+
+Сознательно ограничен DIP: для `Park`, `Inventory` и `BeginnerList` отдельные интерфейсы не создавались. Для небольшого проекта это упростило код и не создало проблем с расширением.
+
 ## Dependency Injection
 
 Для DI используется:
@@ -243,3 +248,4 @@ new FakeServiceCenter(false)
 `EntityFactory` при этом менять не потребуется, потому что он работает со всеми зарегистрированными `IEntityProcessor`.
 
 Новые инвентарные объекты можно добавлять через реализацию `IInvent`, а новые энергопотребляющие объекты — через `IEnergyConsumer`.
+
